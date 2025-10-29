@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 type ProfileCard = {
   name: string;
   age: number;
@@ -6,6 +8,8 @@ type ProfileCard = {
 };
 
 export default function ProfileCard({ name, age, hobby, isOnline }: ProfileCard) {
+    const [online, setOnline] = useState(isOnline)
+
   return (
     <div className="border rounded-xl shadow-md p-4 w-64 text-center flex flex-col items-center gap-3">
       <div className="flex items-center gap-2">
