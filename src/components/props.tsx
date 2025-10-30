@@ -1,5 +1,12 @@
 
-export function Props ({name, age, height, weight}:{name:string, age:number, height:number, weight:number}) {
+type Person = {
+    name: string
+    age: number
+    height: number
+    weight: number
+}
+
+export function Props ({name, age, height, weight}:Person ) {
     return(
         <div className="flex justify-center items-center flex-col">
             <h1>Name: {name}</h1>
