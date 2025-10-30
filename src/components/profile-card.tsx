@@ -18,7 +18,7 @@ export default function ProfileCard({ name, age, hobby, isOnline }: ProfileCard)
             online ? "bg-green-500" : "bg-gray-400"
           }`}
         ></span>
-        <p className="text-sm text-gray-600">{online ? "Online" : "Offline"}</p>
+      {online ? (<p className="text-sm text-green-600">Online</p>) :  <p className="text-sm text-gray-500">Offline</p>}
       </div>
 
 <div className={online ? "text-black": "text-gray-500"}>
@@ -28,7 +28,7 @@ export default function ProfileCard({ name, age, hobby, isOnline }: ProfileCard)
 
 </div>
      
-      <button onClick={() => setOnline(!online) } className={`mt-2 px-4 py-1 rounded ${online ? "bg-green-500 text-white" : "bg-gray-200 text-black"}`}>
+      <button onClick={() => setOnline(!online) } className={`mt-2 px-4 py-1 rounded ${online ? "bg-green-500 text-white" : "bg-gray-200"}`}>
        {online ? "Go Offline": "Go Online"}
 
       </button>
