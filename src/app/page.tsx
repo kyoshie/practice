@@ -1,31 +1,27 @@
 'use client';
 
-import UserInfo from "@/components/user-info";
+import CounterDisplay from "@/components/counter-display";
 import { useState } from "react";
 
 export default function Home() {
-   const [isVisible, setIsVisible] = useState(false)
-
-  const [user] = useState({
-    name:'Alex Rivera',
-    age: 23,
-    bio: "Frontend developer and coffee lover"
-  })
-
-  function toggleVisibility() {
-    setIsVisible(!isVisible)
+  const [count, setCount] = useState(0)
+  
+  function increase() {
+    setCount(count + 1)
   }
- 
+
+  function reset() {
+    setCount(0)
+  }
 
     return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 ">
-
-      <UserInfo
-        user={user}
-        isVisible={isVisible}
-        onToggle={toggleVisibility}
-        />
-
+      <CounterDisplay
+      count={count}
+      onIncrease={increase}
+      onReset={reset}      
+      />
+    
     </div>
   );
 }
