@@ -1,24 +1,39 @@
-'use client'
+'use client';
 
-import LikeCounter from "@/components/like-counter";
+import TodoItem from "@/components/todo-item";
 import { useState } from "react";
 
 export default function Home() {
-  const [count, setCount] = useState(0)
-  const username = "Albert"
-  
-  const handleLike = (): void => {
-    setCount(count + 1)
+  const [task, setTask] = useState([""]);
+  const [newTask, setNewTask] = useState("");
+
+  function addTask(): void {
+    if (newTask.trim() === "") return;
+    setTask([...task, newTask])
+    setNewTask("")
   }
 
-
-  return (
+  function removeTask(indexToRemove: number): void {
+    setTask(task.filter((_, index) => index !== indexToRemove));
+  }
+  
+    return (
     <div className="min-h-screen flex flex-row gap-10 items-center justify-center bg-gray-50 p-6">
-      <LikeCounter 
-        username={username}
-        count={count}
-        onLike={handleLike}
-      />
+       <input
+        value={newTask}
+        onChange={(e) => setNewTask(e.target.value)}
+          className="text-black"
+  placeholder="Add task"
+       />
+        <button onClick={addTask}>Add task</button>
+        {task.map((t, index) => (
+          <TodoItem
+            key={index}
+            task={t}
+            onDelete={() => removeTask(index)}
+          />
+        ))}
+
     </div>
   );
 }
