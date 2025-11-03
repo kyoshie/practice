@@ -1,38 +1,30 @@
 'use client';
 
-import TodoItem from "@/components/todo-item";
+import UserInfo from "@/components/user-info";
 import { useState } from "react";
 
 export default function Home() {
-  const [task, setTask] = useState([""]);
-  const [newTask, setNewTask] = useState("");
+   const [isVisible, setIsVisible] = useState(false)
 
-  function addTask(): void {
-    if (newTask.trim() === "") return;
-    setTask([...task, newTask])
-    setNewTask("")
-  }
+  const [user] = useState({
+    name:'Alex Rivera',
+    age: 23,
+    bio: "Frontend developer and coffee lover"
+  })
 
-  function removeTask(indexToRemove: number): void {
-    setTask(task.filter((_, index) => index !== indexToRemove));
+  function toggleVisibility() {
+    setIsVisible(!isVisible)
   }
-  
+ 
+
     return (
-    <div className="min-h-screen flex flex-row gap-10 items-center justify-center bg-gray-50 p-6">
-       <input
-        value={newTask}
-        onChange={(e) => setNewTask(e.target.value)}
-          className="text-black"
-  placeholder="Add task"
-       />
-        <button onClick={addTask}>Add task</button>
-        {task.map((t, index) => (
-          <TodoItem
-            key={index}
-            task={t}
-            onDelete={() => removeTask(index)}
-          />
-        ))}
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 ">
+
+      <UserInfo
+        user={user}
+        isVisible={isVisible}
+        onToggle={toggleVisibility}
+        />
 
     </div>
   );
